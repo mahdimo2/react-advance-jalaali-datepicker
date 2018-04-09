@@ -27,6 +27,12 @@ class JDatePicker extends React.Component {
         };
         this.state.daysCount= this.daysInMonth(moment().format("jMM"), moment().format("jYYYY"));
     }
+    componentWillReceiveProps(nextProps) {
+  		if ('preSelected' in nextProps) {
+	  		const value = nextProps.preSelected;
+		  	this.setState({ inputValue: value });
+      }
+		}
     daysInMonth(month, selectedYear){
         if(0 < month && month < 7) return 31;
         else if(6 < month && month < 12) return 30;
